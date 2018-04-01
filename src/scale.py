@@ -64,6 +64,10 @@ X_scaled = pd.DataFrame(scaler.fit_transform(X_train), columns=X_train.columns)
 X_test_scaled = pd.DataFrame(scaler.transform(X_test), columns = X_test.columns)
 test_scaled = pd.DataFrame(scaler.transform(test), columns = test.columns)
 
+#saving data for future reference
+saved_train = pd.DataFrame(scaler.transform(X), columns = X.columns)
+saved_train.to_csv("scaled_train.csv", header=True, index=False)
+
 #creating and compiling a small neural network
 model0 = Sequential()
 model0.add(Dense(89,kernel_regularizer=regularizers.l2(0.5), activation="relu", input_shape=(89,)))
@@ -154,5 +158,5 @@ result1.columns = ['id','is_click']
 result1["is_click"] = (result1["is_click"] > 0.5).astype(int)
 result1.to_csv("submit_neural1.csv", header=True, index=False)
 
-model0.save("model0h5")
-model1.save("mode1.h5")
+model0.save("./model/model0.h5")
+model1.save("./model/model1.h5")
