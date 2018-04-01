@@ -68,8 +68,8 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['acc'])
 small_model = model.fit(X_scaled, y_train, epochs=20, validation_split=0.3, batch_size = 100)
 
 #finding the score of the model on test data
-score = model.eveluate(X_test_scaled, y_test, batch_size = 100)
-print("Score for 1 hidden layer network : ", score)
+score = model.evaluate(X_test_scaled, y_test, batch_size = 100)
+print(">>>>>>>>>>>>>>>>>>>>>>Score for 1 hidden layer network : ", score)
 
 #plotting graph
 acc = small_model.history['acc']
@@ -103,8 +103,8 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['acc'])
 large_model = model.fit(X_scaled, y_train, epochs=20, validation_split=0.3, batch_size = 100)
 
 #finding the score of the model on test data
-score = model.eveluate(X_test_scaled, y_test, batch_size = 100)
-print("Score for 1 hidden layer network : ", score)
+score = model.evaluate(X_test_scaled, y_test, batch_size = 100)
+print(">>>>>>>>>>>>>>>>>>>>>>Score for 1 hidden layer network : ", score)
 
 #plotting graph
 acc = large_model.history['acc']
