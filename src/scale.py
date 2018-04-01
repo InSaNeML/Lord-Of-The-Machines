@@ -66,13 +66,13 @@ test_scaled = pd.DataFrame(scaler.transform(test), columns = test.columns)
 
 #creating and compiling a small neural network
 model0 = Sequential()
-model0.add(Dense(89,kernel_regularizer=regularizers.l2(0.01), activation="relu", input_shape=(89,)))
+model0.add(Dense(89,kernel_regularizer=regularizers.l2(0.5), activation="relu", input_shape=(89,)))
 model0.add(Dense(1, activation='sigmoid'))
 
 model0.compile(optimizer='adam', loss='binary_crossentropy', metrics=['acc'])
 
 #fit the model on the data
-small_model = model0.fit(X_scaled, y_train, epochs=20, validation_split=0.3, batch_size = 100)
+small_model = model0.fit(X_scaled, y_train, epochs=50, validation_split=0.4, batch_size = 100, shuffle=True)
 
 #finding the score of the model on test data
 score = model0.evaluate(X_test_scaled, y_test, batch_size = 100)
@@ -99,15 +99,18 @@ plt.show()
 
 #creating and compiling a bigger neural network
 model1 = Sequential()
-model1.add(Dense(120,kernel_regularizer=regularizers.l2(0.01), activation="relu", input_shape=(89,)))
-model1.add(Dense(89,kernel_regularizer=regularizers.l2(0.01), activation="relu", input_shape=(89,)))
-model1.add(Dense(30,kernel_regularizer=regularizers.l2(0.01), activation="relu", input_shape=(89,)))
+model1.add(Dense(120,kernel_regularizer=regularizers.l2(0.5), activation="relu", input_shape=(89,)))
+model1.add(layers.Dropout(0.5))
+model1.add(Dense(89,kernel_regularizer=regularizers.l2(0.5), activation="relu"))
+model1.add(layers.Dropout(0.5))
+model1.add(Dense(30,kernel_regularizer=regularizers.l2(0.5), activation="relu"))
+model1.add(layers.Dropout(0.5))
 model1.add(Dense(1, activation='sigmoid'))
 
 model1.compile(optimizer='adam', loss='binary_crossentropy', metrics=['acc'])
 
 #fit the model on the data
-large_model = model1.fit(X_scaled, y_train, epochs=20, validation_split=0.3, batch_size = 100)
+large_model = model1.fit(X_scaled, y_train, epochs=50, validation_split=0.4, batch_size = 100, shuffle=True)
 
 #finding the score of the model on test data
 score = model1.evaluate(X_test_scaled, y_test, batch_size = 100)
