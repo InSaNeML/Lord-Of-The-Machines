@@ -32,7 +32,7 @@ for x in df.communication_type.unique():
 for x in df.email_body.unique():
     s = "body"+str(x)
     df[s] = (df.email_body == x).astype(int)
-    daf[s] = (daf.communication_type == x).astype(int)
+    daf[s] = (daf.email_body == x).astype(int)
     
 for x in df.subject.unique():
     s = "sub"+str(x)
