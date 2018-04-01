@@ -67,7 +67,7 @@ test_scaled = pd.DataFrame(scaler.transform(test), columns = test.columns)
 #creating and compiling a small neural network
 model0 = Sequential()
 model0.add(Dense(89,kernel_regularizer=regularizers.l2(0.5), activation="relu", input_shape=(89,)))
-model1.add(Dropout(0.5))
+model0.add(Dropout(0.5))
 model0.add(Dense(1, activation='sigmoid'))
 
 model0.compile(optimizer='adam', loss='binary_crossentropy', metrics=['acc'])
