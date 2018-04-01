@@ -140,12 +140,12 @@ predictions = pd.DataFrame(y0)
 output = pd.DataFrame(data = {"id":daf["id"]})
 result = pd.concat([output, predictions], axis=1)
 result.columns = ['id','is_click']
-result["is_click"] = (result["is_click"] > 0.01).astype(int)
+result["is_click"] = (result["is_click"] > 0.5).astype(int)
 result.to_csv("submit_neural0.csv", header=True, index=False)
 
 predictions1 = pd.DataFrame(y1)
 output1 = pd.DataFrame(data = {"id":daf["id"]})
 result1 = pd.concat([output1, predictions1], axis=1)
 result1.columns = ['id','is_click']
-result1["is_click"] = (result1["is_click"] > 0.01).astype(int)
+result1["is_click"] = (result1["is_click"] > 0.5).astype(int)
 result1.to_csv("submit_neural1.csv", header=True, index=False)
