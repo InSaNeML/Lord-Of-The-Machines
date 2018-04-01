@@ -53,6 +53,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random
 
 #we need to scale the data now
 print("Scaling the data.")
+scaler = StandardScaler()
 X_scaled = pd.DataFrame(scaler.fit_transform(X_train), columns=X_train.columns)
 X_test_scaled = pd.DataFrame(scaler.transform(X_test), columns = X_test.columns)
 
