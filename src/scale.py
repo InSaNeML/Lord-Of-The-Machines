@@ -9,7 +9,7 @@ from sklearn.preprocessing import StandardScaler
 #import keras
 import keras
 from keras.models import Sequential
-from keras.layers import Dense
+from keras.layers import Dense, Dropout
 from keras import regularizers
 
 #import to sample a part of data for testing purpose
@@ -67,6 +67,7 @@ test_scaled = pd.DataFrame(scaler.transform(test), columns = test.columns)
 #creating and compiling a small neural network
 model0 = Sequential()
 model0.add(Dense(89,kernel_regularizer=regularizers.l2(0.5), activation="relu", input_shape=(89,)))
+model1.add(Dropout(0.5))
 model0.add(Dense(1, activation='sigmoid'))
 
 model0.compile(optimizer='adam', loss='binary_crossentropy', metrics=['acc'])
@@ -100,11 +101,11 @@ plt.show()
 #creating and compiling a bigger neural network
 model1 = Sequential()
 model1.add(Dense(120,kernel_regularizer=regularizers.l2(0.5), activation="relu", input_shape=(89,)))
-model1.add(layers.Dropout(0.5))
+model1.add(Dropout(0.5))
 model1.add(Dense(89,kernel_regularizer=regularizers.l2(0.5), activation="relu"))
-model1.add(layers.Dropout(0.5))
+model1.add(Dropout(0.5))
 model1.add(Dense(30,kernel_regularizer=regularizers.l2(0.5), activation="relu"))
-model1.add(layers.Dropout(0.5))
+model1.add(Dropout(0.5))
 model1.add(Dense(1, activation='sigmoid'))
 
 model1.compile(optimizer='adam', loss='binary_crossentropy', metrics=['acc'])
@@ -152,3 +153,6 @@ result1 = pd.concat([output1, predictions1], axis=1)
 result1.columns = ['id','is_click']
 result1["is_click"] = (result1["is_click"] > 0.5).astype(int)
 result1.to_csv("submit_neural1.csv", header=True, index=False)
+
+model0.save("model0h5")
+model1.save("mode1.h5")
