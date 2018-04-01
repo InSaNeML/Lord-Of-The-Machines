@@ -26,7 +26,7 @@ print("Creating sparse matrix")
 for x in df.communication_type.unique():
     s = "comm"+str(x)
     df[s] = (df.communication_type == x).astype(int)
-	daf[s] = (daf.communication_type == x).astype(int)
+    daf[s] = (daf.communication_type == x).astype(int)
 
 
 for x in df.email_body.unique():
